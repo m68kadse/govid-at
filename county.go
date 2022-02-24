@@ -22,7 +22,7 @@ func countyFromRecord(rec []string) (*County, error) {
 	county := new(County)
 
 	//record format:
-	//Name;id;Residents;Cases;Deaths;Incidence7d
+	//Name;id;Residents;Cases;Deaths;Cases7d
 	county.Name = rec[0]
 	county.Id = rec[1]
 	if residents, err := strconv.ParseInt(rec[2], 10, 64); err != nil {
