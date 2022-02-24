@@ -8,7 +8,7 @@ import (
 type County struct {
 	Id             string
 	Name           string
-	Residents      int64
+	Population     int64
 	Cases          int64
 	Deaths         int64
 	Cases7d        int64
@@ -25,10 +25,10 @@ func countyFromRecord(rec []string) (*County, error) {
 	//Name;id;Residents;Cases;Deaths;Cases7d
 	county.Name = rec[0]
 	county.Id = rec[1]
-	if residents, err := strconv.ParseInt(rec[2], 10, 64); err != nil {
-		return nil, fmt.Errorf("cannot parse record, residents not a valid integer: %v", rec)
+	if population, err := strconv.ParseInt(rec[2], 10, 64); err != nil {
+		return nil, fmt.Errorf("cannot parse record, population not a valid integer: %v", rec)
 	} else {
-		county.Residents = residents
+		county.Population = population
 	}
 	if cases, err := strconv.ParseInt(rec[3], 10, 64); err != nil {
 		return nil, fmt.Errorf("cannot parse record, cases not a valid integer: %v", rec)
