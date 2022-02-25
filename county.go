@@ -48,3 +48,43 @@ func countyFromRecord(rec []string) (*County, error) {
 
 	return county, nil
 }
+
+func (c County) Dose1() int64 {
+	var total int64
+	for _, m := range c.Municipalities {
+		total += m.Dose1
+	}
+	return total
+}
+
+func (c County) Dose2() int64 {
+	var total int64
+	for _, m := range c.Municipalities {
+		total += m.Dose2
+	}
+	return total
+}
+
+func (c County) Dose3() int64 {
+	var total int64
+	for _, m := range c.Municipalities {
+		total += m.Dose3
+	}
+	return total
+}
+
+func (c County) Certs() int64 {
+	var total int64
+	for _, m := range c.Municipalities {
+		total += m.Certs
+	}
+	return total
+}
+
+func (c County) PercentVaccinated() float64 {
+	return float64(c.Certs()*100) / float64(c.Population)
+}
+
+func (c County) Cases7dPer100k() int64 {
+	return int64(float64(c.Cases7d) / (float64(c.Population) / 100000))
+}
